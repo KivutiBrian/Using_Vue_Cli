@@ -1,28 +1,77 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+
+
+    <Header />
+    
+    <div class="container">
+
+        <Profile
+        :userName="uname" 
+        :lastName="lname" 
+        :userAge="uage"
+        :userParents="parents"
+        @changeName="uname = $event"
+        :updateLastName="updateLast"
+        />
+        <Friends />
+    </div>
+    
+
+    <Footer />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+
+import Header from './components/header_footer/Header.vue'
+import Footer from './components/header_footer/Footer.vue'
+import Profile from './components/user/Profile.vue'
+import Friends from './components/user/Friends.vue'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+        Header,
+        Footer,
+        Profile,
+        Friends
+  },
+  data(){
+    return{
+
+        uname:'Kivuti',
+        lname: 'Brian',
+        uage:25,
+        parents: {
+            mother: "Agnes Mary",
+            father: "John Doe"
+        }
+    }
+  },
+
+  methods:{
+
+    updateLast(value){
+
+        this.lname = value
+    }
   }
+
 }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+  body {
+    padding: 0;
+    margin: 0;
+    font-family: 'Roboto', sans-serif
+  }
+
+  .container {
+    min-height: 84vh;
+    box-sizing: border-box;
+    padding: 20px
+  }
+
 </style>
